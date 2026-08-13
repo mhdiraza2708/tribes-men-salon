@@ -9,14 +9,14 @@ const CONFIG = {
   // maps:  what gets searched on Google Maps for "Get Directions"
   branches: {
     boshar: {
-      phone: "96800000000",
-      phoneDisplay: "+968 0000 0000",
-      maps: "Tribes Men's Spa and Salon, Bausher, Muscat, Oman"
+      phone: "96897387797",
+      phoneDisplay: "+968 9738 7797",
+      maps: "Tribes Men's Spa and Salon, Office 1991, Al Ghubrah Street 9, Bausher, Muscat, Oman"
     },
     mazoon: {
-      phone: "96800000000",
-      phoneDisplay: "+968 0000 0000",
-      maps: "Tribes Men's Spa and Salon, Mazoon Street, Muscat, Oman"
+      phone: "96897387798",
+      phoneDisplay: "+968 9738 7798",
+      maps: "Tribes Men's Spa and Salon, Al Mazoon Street, Seeb, Muscat, Oman"
     }
   },
   // Which branch the floating WhatsApp button and header "call" links use
@@ -25,7 +25,7 @@ const CONFIG = {
   // Pre-filled WhatsApp message
   whatsappMessage: "Hi Tribes, I'd like to book an appointment.",
   // Instagram profile
-  instagram: "https://instagram.com/tribesmensalon",
+  instagram: "https://instagram.com/tribesoman",
 
   // ---- BOOKING CALENDAR ----
   // Paste your Calendly event link here, e.g.
@@ -300,7 +300,7 @@ const I18N = {
     "booking.fbBody": "Add your Calendly (or Google Appointments) link to <code>CONFIG.calendlyUrl</code> in <code>script.js</code> and the live calendar will appear here.",
     "booking.fbCta": "Book on WhatsApp instead",
 
-    "hours.d1": "Saturday – Thursday", "hours.d2": "Friday",
+    "hours.d1": "Daily", "hours.d2": "",
 
     "team.eyebrow": "The Tribe", "team.title": "Meet the Team",
     "team.lead": "Request your specialist by name when you book.",
@@ -315,8 +315,8 @@ const I18N = {
     "contact.eyebrow": "Find Us", "contact.title": "Two Branches in Muscat",
     "contact.addr": "Address", "contact.phone": "Phone", "contact.email": "Email", "contact.hours": "Hours",
     "contact.cta": "Book Now", "contact.dir": "Get Directions",
-    "branch.boshar": "Boshar", "branch.bosharAddr": "Bausher, Muscat, Sultanate of Oman",
-    "branch.mazoon": "Mazoon Street", "branch.mazoonAddr": "Mazoon Street, Muscat, Sultanate of Oman",
+    "branch.boshar": "Boshar", "branch.bosharAddr": "Office 1991, Al Ghubrah Street 9, Bausher, Muscat",
+    "branch.mazoon": "Mazoon Street", "branch.mazoonAddr": "Al Mazoon Street, Seeb, Muscat",
 
     "footer.tag": "Craft, ritual and respect — since 2013.",
     "footer.rights": "All rights reserved.",
@@ -367,7 +367,7 @@ const I18N = {
     "booking.fbBody": "أضف رابط Calendly (أو مواعيد جوجل) في <code>CONFIG.calendlyUrl</code> داخل ملف <code>script.js</code> وسيظهر التقويم هنا.",
     "booking.fbCta": "احجز عبر واتساب",
 
-    "hours.d1": "السبت – الخميس", "hours.d2": "الجمعة",
+    "hours.d1": "يوميًا", "hours.d2": "",
 
     "team.eyebrow": "الفريق", "team.title": "تعرّف على الفريق",
     "team.lead": "اطلب المتخصص بالاسم عند الحجز.",
@@ -382,8 +382,8 @@ const I18N = {
     "contact.eyebrow": "موقعنا", "contact.title": "فرعان في مسقط",
     "contact.addr": "العنوان", "contact.phone": "الهاتف", "contact.email": "البريد الإلكتروني", "contact.hours": "ساعات العمل",
     "contact.cta": "احجز الآن", "contact.dir": "احصل على الاتجاهات",
-    "branch.boshar": "بوشر", "branch.bosharAddr": "بوشر، مسقط، سلطنة عُمان",
-    "branch.mazoon": "شارع مازون", "branch.mazoonAddr": "شارع مازون، مسقط، سلطنة عُمان",
+    "branch.boshar": "بوشر", "branch.bosharAddr": "مكتب 1991، شارع الغبرة 9، بوشر، مسقط",
+    "branch.mazoon": "شارع مازون", "branch.mazoonAddr": "شارع مازون، السيب، مسقط",
 
     "footer.tag": "حرفة وطقوس واحترام — منذ ٢٠١٣.",
     "footer.rights": "جميع الحقوق محفوظة.",
