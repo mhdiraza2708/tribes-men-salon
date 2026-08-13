@@ -570,7 +570,7 @@ html[lang="ar"] .branch-btn { letter-spacing: 0; font-size: .85rem; }
 }
 .team-card:hover { transform: translateY(-6px); border-color: var(--gold-dim); }
 .team-photo {
-  aspect-ratio: 3/4; background-size: cover; background-position: center;
+  aspect-ratio: 3/4; background-size: cover; background-position: center 15%;
   filter: grayscale(.55) contrast(1.05); transition: filter .5s var(--ease), transform .7s var(--ease);
 }
 .team-card:hover .team-photo { filter: grayscale(0) contrast(1.05); transform: scale(1.04); }
