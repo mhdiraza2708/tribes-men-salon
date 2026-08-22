@@ -93,6 +93,21 @@ html[lang="ar"] .h2 { font-size: clamp(1.6rem, 3.4vw, 2.5rem); font-weight: 700;
 }
 html[lang="ar"] .eyebrow { letter-spacing: .1em; }
 
+.eyebrow { display: inline-flex; align-items: center; gap: 9px; }
+.eyebrow::before {
+  content: "\2702";
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--orange-hot);
+  transform-origin: 65% 55%;
+  animation: snip 2.4s ease-in-out infinite;
+}
+@keyframes snip {
+  0%, 40%, 100% { transform: rotate(0deg) scaleX(1); }
+  20% { transform: rotate(-22deg) scaleX(.8); }
+}
+
 .gold {
   background: linear-gradient(100deg, var(--gold-soft), var(--gold) 40%, var(--orange-hot));
   -webkit-background-clip: text; background-clip: text;
@@ -250,6 +265,30 @@ html[lang="ar"] .nav a { letter-spacing: 0; font-size: .88rem; }
   animation: pulse 9s ease-in-out infinite;
 }
 @keyframes pulse { 0%,100% { opacity:.65; transform: scale(1); } 50% { opacity:1; transform: scale(1.1); } }
+
+/* Floating hair clippings */
+.clippings { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+.clippings span {
+  position: absolute; top: -8%; width: 2px;
+  background: linear-gradient(180deg, var(--gold-soft), transparent);
+  border-radius: 40% 60% 65% 35% / 60% 40% 65% 35%;
+  opacity: 0;
+  animation: clip-fall linear infinite;
+}
+@keyframes clip-fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+  8%   { opacity: .5; }
+  92%  { opacity: .3; }
+  100% { transform: translateY(112vh) rotate(340deg); opacity: 0; }
+}
+.clippings span:nth-child(1) { left: 6%;  height: 20px; animation-duration: 9s;   animation-delay: 0s; }
+.clippings span:nth-child(2) { left: 16%; height: 14px; animation-duration: 12s;  animation-delay: 1.5s; animation-direction: reverse; }
+.clippings span:nth-child(3) { left: 27%; height: 24px; animation-duration: 9.5s; animation-delay: 3s; }
+.clippings span:nth-child(4) { left: 41%; height: 16px; animation-duration: 13s;  animation-delay: .5s; animation-direction: reverse; }
+.clippings span:nth-child(5) { left: 55%; height: 22px; animation-duration: 10s;  animation-delay: 2.5s; }
+.clippings span:nth-child(6) { left: 68%; height: 15px; animation-duration: 12.5s;animation-delay: 4s; animation-direction: reverse; }
+.clippings span:nth-child(7) { left: 80%; height: 20px; animation-duration: 9s;   animation-delay: 1s; }
+.clippings span:nth-child(8) { left: 91%; height: 17px; animation-duration: 11.5s;animation-delay: 3.5s; animation-direction: reverse; }
 
 .hero-inner { position: relative; z-index: 2; max-width: 820px; }
 
@@ -745,7 +784,8 @@ html[lang="ar"] .footer-nav a { letter-spacing: 0; font-size: .88rem; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .marquee-track, .hero-glow, .scroll-hint span { animation: none; }
+  .marquee-track, .hero-glow, .scroll-hint span, .clippings span, .eyebrow::before { animation: none; }
+  .clippings { display: none; }
   html { scroll-behavior: auto; }
 }
 
