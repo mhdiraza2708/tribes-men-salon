@@ -297,8 +297,26 @@ html[lang="ar"] .nav a { letter-spacing: 0; font-size: .88rem; }
   font-size: clamp(3rem, 9vw, 6.4rem);
   line-height: .96; font-weight: 500; margin: 0 0 26px;
   letter-spacing: -.01em;
+  position: relative;
+  animation: blade-reveal 1.05s cubic-bezier(.65,0,.35,1) .2s both;
 }
 .hero-title span { display: block; }
+.hero-title::after {
+  content: "";
+  position: absolute; top: -4%; bottom: -4%; left: 0; width: 5px;
+  background: linear-gradient(180deg, var(--gold-soft), var(--orange-hot));
+  box-shadow: 0 0 26px 5px rgba(255,138,43,.85);
+  animation: blade-sweep 1.05s cubic-bezier(.65,0,.35,1) .2s both;
+}
+@keyframes blade-reveal {
+  0%   { opacity: 0; clip-path: inset(0 100% 0 0); }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+@keyframes blade-sweep {
+  0%   { left: 0; opacity: 1; }
+  92%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
 html[lang="ar"] .hero-title { font-size: clamp(2.2rem, 6.5vw, 4.4rem); line-height: 1.25; font-weight: 700; }
 
 .hero-lead {
@@ -777,6 +795,37 @@ html[lang="ar"] .footer-nav a { letter-spacing: 0; font-size: .88rem; }
 .wa-float:hover .wa-label { max-width: 220px; opacity: 1; }
 
 /* =========================================================
+   CUSTOM CURSOR — scissors
+   ========================================================= */
+.cursor-fx {
+  position: fixed; top: 0; left: 0; width: 30px; height: 30px;
+  pointer-events: none; z-index: 10000;
+  opacity: 0; transition: opacity .25s;
+  will-change: transform;
+}
+.cursor-fx.on { opacity: 1; }
+.cursor-fx .blade {
+  position: absolute; left: 15px; top: 15px;
+  width: 14px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold-soft), var(--orange-hot));
+  box-shadow: 0 0 8px rgba(255,138,43,.65);
+  transform-origin: left center;
+  transition: transform .15s ease-out, width .2s ease-out;
+}
+.cursor-fx .blade-a { transform: rotate(24deg); }
+.cursor-fx .blade-b { transform: rotate(-24deg); }
+.cursor-fx.snip .blade-a { transform: rotate(3deg); }
+.cursor-fx.snip .blade-b { transform: rotate(-3deg); }
+.cursor-fx.hover .blade { width: 20px; }
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  body, a, button, .btn, .menu-tab, .branch-btn { cursor: none; }
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-fx { display: none; }
+}
+
+/* =========================================================
    REVEAL ANIMATION
    ========================================================= */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
@@ -784,8 +833,12 @@ html[lang="ar"] .footer-nav a { letter-spacing: 0; font-size: .88rem; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .marquee-track, .hero-glow, .scroll-hint span, .clippings span, .eyebrow::before { animation: none; }
+  .marquee-track, .hero-glow, .scroll-hint span, .clippings span, .eyebrow::before,
+  .hero-title, .hero-title::after { animation: none; }
   .clippings { display: none; }
+  .hero-title { opacity: 1; clip-path: none; }
+  .hero-title::after { display: none; }
+  body, a, button, .btn, .menu-tab, .branch-btn { cursor: auto; }
   html { scroll-behavior: auto; }
 }
 

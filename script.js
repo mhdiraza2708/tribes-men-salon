@@ -641,6 +641,56 @@ function initReveal() {
 }
 
 /* =========================================================
+   STAT COUNTERS
+   ========================================================= */
+function animateCount(el, duration = 1500) {
+  const raw = el.textContent.trim();
+  const m = raw.match(/^([\d.]+)(.*)$/);
+  if (!m) return;
+  const end = parseFloat(m[1]);
+  const suffix = m[2] || "";
+  const decimals = (m[1].split(".")[1] || "").length;
+  const start = performance.now();
+
+  function tick(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = (end * eased).toFixed(decimals) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function initStatCounters() {
+  const stats = document.querySelectorAll(".hero-stats strong");
+  if (!stats.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  setTimeout(() => stats.forEach(el => animateCount(el)), 350);
+}
+
+/* =========================================================
+   CUSTOM CURSOR — scissors
+   ========================================================= */
+function initCursorFx() {
+  const fx = document.querySelector(".cursor-fx");
+  if (!fx) return;
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let shown = false;
+  window.addEventListener("mousemove", e => {
+    fx.style.transform = `translate(${e.clientX - 15}px, ${e.clientY - 15}px)`;
+    if (!shown) { fx.classList.add("on"); shown = true; }
+  });
+  window.addEventListener("mousedown", () => fx.classList.add("snip"));
+  window.addEventListener("mouseup", () => fx.classList.remove("snip"));
+  document.addEventListener("mouseover", e => {
+    fx.classList.toggle("hover", !!e.target.closest("a, button, .btn"));
+  });
+  document.addEventListener("mouseleave", () => fx.classList.remove("on"));
+}
+
+/* =========================================================
    INIT
    ========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
@@ -655,6 +705,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeader();
   initNav();
   initReveal();
+  initStatCounters();
+  initCursorFx();
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
