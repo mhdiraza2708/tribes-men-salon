@@ -677,17 +677,16 @@ function initCursorFx() {
   if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  let shown = false;
   window.addEventListener("mousemove", e => {
     fx.style.transform = `translate(${e.clientX - 15}px, ${e.clientY - 15}px)`;
-    if (!shown) { fx.classList.add("on"); shown = true; }
+    fx.classList.add("on");
   });
   window.addEventListener("mousedown", () => fx.classList.add("snip"));
   window.addEventListener("mouseup", () => fx.classList.remove("snip"));
   document.addEventListener("mouseover", e => {
     fx.classList.toggle("hover", !!e.target.closest("a, button, .btn"));
   });
-  document.addEventListener("mouseleave", () => fx.classList.remove("on"));
+  document.documentElement.addEventListener("mouseleave", () => fx.classList.remove("on"));
 }
 
 /* =========================================================
