@@ -798,25 +798,34 @@ html[lang="ar"] .footer-nav a { letter-spacing: 0; font-size: .88rem; }
    CUSTOM CURSOR — scissors
    ========================================================= */
 .cursor-fx {
-  position: fixed; top: 0; left: 0; width: 30px; height: 30px;
+  position: fixed; top: 0; left: 0; width: 28px; height: 28px;
   pointer-events: none; z-index: 10000;
   opacity: 0; transition: opacity .25s;
   will-change: transform;
 }
 .cursor-fx.on { opacity: 1; }
+.cursor-fx::after {
+  content: "";
+  position: absolute; left: 50%; top: 50%; width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--orange-hot);
+  box-shadow: 0 0 8px 1px rgba(255,138,43,.85);
+  transform: translate(-50%, -50%);
+}
 .cursor-fx .blade {
-  position: absolute; left: 15px; top: 15px;
-  width: 14px; height: 2px; border-radius: 2px;
+  position: absolute; left: 2px; top: 13px;
+  width: 24px; height: 2px; border-radius: 2px;
   background: linear-gradient(90deg, var(--gold-soft), var(--orange-hot));
   box-shadow: 0 0 8px rgba(255,138,43,.65);
-  transform-origin: left center;
-  transition: transform .15s ease-out, width .2s ease-out;
+  transform-origin: 50% 50%;
+  transition: transform .15s ease-out;
 }
-.cursor-fx .blade-a { transform: rotate(24deg); }
-.cursor-fx .blade-b { transform: rotate(-24deg); }
-.cursor-fx.snip .blade-a { transform: rotate(3deg); }
-.cursor-fx.snip .blade-b { transform: rotate(-3deg); }
-.cursor-fx.hover .blade { width: 20px; }
+.cursor-fx .blade-a { transform: rotate(22deg); }
+.cursor-fx .blade-b { transform: rotate(-22deg); }
+.cursor-fx.snip .blade-a { transform: rotate(4deg); }
+.cursor-fx.snip .blade-b { transform: rotate(-4deg); }
+.cursor-fx.hover .blade-a { transform: rotate(32deg); }
+.cursor-fx.hover .blade-b { transform: rotate(-32deg); }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   body, a, button, .btn, .menu-tab, .branch-btn { cursor: none; }
